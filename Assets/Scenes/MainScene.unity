@@ -603,6 +603,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4572514398849761660, guid: 54c9f3437625d354c9eb8a995fd4f00f,
+        type: 3}
+      propertyPath: objetoInteractuable
+      value: 
+      objectReference: {fileID: 11400000, guid: f3e46ffe52c85e446b78ea945dc2da8b,
+        type: 2}
     - target: {fileID: 7436325247371529525, guid: 54c9f3437625d354c9eb8a995fd4f00f,
         type: 3}
       propertyPath: m_Name
@@ -704,7 +710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 5
   gameInput: {fileID: 1597156640}
-  layerMaskContador:
+  layerMaskObjeto:
     serializedVersion: 2
     m_Bits: 64
 --- !u!1 &2034806381
@@ -876,6 +882,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4572514398849761660, guid: 54c9f3437625d354c9eb8a995fd4f00f,
+        type: 3}
+      propertyPath: prefabTomate
+      value: 
+      objectReference: {fileID: 679896522706494813, guid: f693dc76a7c71b44b8cc655afba86e01,
+        type: 3}
     - target: {fileID: 7436325247371529525, guid: 54c9f3437625d354c9eb8a995fd4f00f,
         type: 3}
       propertyPath: m_Name

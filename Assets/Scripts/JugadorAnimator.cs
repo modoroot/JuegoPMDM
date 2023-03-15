@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /**
  * Clase "JugadorAnimator" que se utiliza para controlar la animación del jugador 
- * en función de si está caminando o no.
- * @author amna
+ * en función de si está caminando o no
  * 
  */
 public class JugadorAnimator : MonoBehaviour

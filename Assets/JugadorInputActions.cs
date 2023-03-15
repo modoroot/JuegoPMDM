@@ -35,6 +35,15 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interactuar"",
+                    ""type"": ""Button"",
+                    ""id"": ""93cf56c6-1d0f-486a-bf83-881d4a75f62c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -158,6 +167,28 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Mover"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f2765af-3498-4610-80ab-21f7dadb76df"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactuar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe03ee8a-1048-46e7-8017-b4cefce9e86b"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactuar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -167,6 +198,7 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
         // Jugador
         m_Jugador = asset.FindActionMap("Jugador", throwIfNotFound: true);
         m_Jugador_Mover = m_Jugador.FindAction("Mover", throwIfNotFound: true);
+        m_Jugador_Interactuar = m_Jugador.FindAction("Interactuar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,11 +261,13 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Jugador;
     private List<IJugadorActions> m_JugadorActionsCallbackInterfaces = new List<IJugadorActions>();
     private readonly InputAction m_Jugador_Mover;
+    private readonly InputAction m_Jugador_Interactuar;
     public struct JugadorActions
     {
         private @JugadorInputActions m_Wrapper;
         public JugadorActions(@JugadorInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Mover => m_Wrapper.m_Jugador_Mover;
+        public InputAction @Interactuar => m_Wrapper.m_Jugador_Interactuar;
         public InputActionMap Get() { return m_Wrapper.m_Jugador; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -246,6 +280,9 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
             @Mover.started += instance.OnMover;
             @Mover.performed += instance.OnMover;
             @Mover.canceled += instance.OnMover;
+            @Interactuar.started += instance.OnInteractuar;
+            @Interactuar.performed += instance.OnInteractuar;
+            @Interactuar.canceled += instance.OnInteractuar;
         }
 
         private void UnregisterCallbacks(IJugadorActions instance)
@@ -253,6 +290,9 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
             @Mover.started -= instance.OnMover;
             @Mover.performed -= instance.OnMover;
             @Mover.canceled -= instance.OnMover;
+            @Interactuar.started -= instance.OnInteractuar;
+            @Interactuar.performed -= instance.OnInteractuar;
+            @Interactuar.canceled -= instance.OnInteractuar;
         }
 
         public void RemoveCallbacks(IJugadorActions instance)
@@ -273,5 +313,6 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
     public interface IJugadorActions
     {
         void OnMover(InputAction.CallbackContext context);
+        void OnInteractuar(InputAction.CallbackContext context);
     }
 }
