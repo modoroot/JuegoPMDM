@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 /**
- * Clase que gestiona la entrada de datos del jugador usando el paquete de Unity Input System.
- *
- */
+* Clase que gestiona la entrada de datos del jugador usando el paquete de Unity Input System.
+*
+*/
 public class GameInput : MonoBehaviour {
 
     public event EventHandler OnInteractuarAccion;
+    public event EventHandler OnInteractuarAccionAlternativa;
+
     //Atributo que obtiene y gestiona la entrada de datos del jugador.
     private JugadorInputActions playerInputActions;
 
@@ -23,12 +26,18 @@ public class GameInput : MonoBehaviour {
         //Se asigna una función al evento. No se utilizan los paréntesis porque no es necesario llamar a la función,
         //sino que se le pasa la referencia a la función.
         playerInputActions.Jugador.Interactuar.performed += Interactuar_performed;
+        playerInputActions.Jugador.InteraccionAlternativa.performed += InteraccionAlternativa_performed;
     }
+
+    private void InteraccionAlternativa_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnInteractuarAccionAlternativa?.Invoke(this, EventArgs.Empty);
+    }
+
     /**
      * Método que interactúa con el objeto que se encuentra delante del jugador presionando la tecla "E" 
      * o el botón inferior derecho del mando.
      * Los botones han sido configurados a partir del paquete Unity Input System.
-     */
+    */
     private void Interactuar_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         //If simplificado. Sólo se invoca si el evento no es nulo.
         OnInteractuarAccion?.Invoke(this, EventArgs.Empty);

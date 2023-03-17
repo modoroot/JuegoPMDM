@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjetoInteractuable : MonoBehaviour {
     [SerializeField] private ObjetoInteractuableSO objetoInteractuableSO;
-    private ClearContador clearContador;
+    private IObjetoInteractuablePadre objetoInteractuablePadre;
 
     /**
      * Método para obtener el objeto interactuable
@@ -17,25 +17,40 @@ public class ObjetoInteractuable : MonoBehaviour {
      * Cuando el objeto interactuable se cambia de objeto padre, también cambia su posición
      * a partir de la siguiente función
      */
-    public void SetClearContador(ClearContador clearContador) {
-        if (this.clearContador != null) {
-            this.clearContador.ClearObjInteractuable();
+    public void SetObjetoInteractuablePadre(IObjetoInteractuablePadre objetoInteractuablePadre) {
+        if (this.objetoInteractuablePadre != null) {
+            this.objetoInteractuablePadre.ClearObjInteractuable();
         }
-        this.clearContador = clearContador;
+        this.objetoInteractuablePadre = objetoInteractuablePadre;
 
-        if (clearContador.objInteractuableActivo()) {
+        if (objetoInteractuablePadre.objInteractuableActivo()) {
             Debug.LogError("Ya tiene un ingrediente el objeto padre / encimera");
         }
-        clearContador.SetObjInteractuable(this);
+        objetoInteractuablePadre.SetObjInteractuable(this);
 
-        transform.parent = clearContador.GetObjetoInteractuableConTransform();
+        transform.parent = objetoInteractuablePadre.GetObjetoInteractuableConTransform();
         transform.localPosition = Vector3.zero;
     }
 
 
 
-    public ClearContador GetClearContador() {
-        return clearContador;
+    public IObjetoInteractuablePadre GetObjetoInteractuablePadre() {
+        return objetoInteractuablePadre;
+    }
+    /**
+     * Destruye el objeto actual de la encimera
+     */
+    public void DestroySelf() {
+        objetoInteractuablePadre.ClearObjInteractuable();
+        Destroy(gameObject);
+    }
+
+    public static ObjetoInteractuable InvocarObjetoInteractuable(ObjetoInteractuableSO objetoInteractuableSO,
+        IObjetoInteractuablePadre objetoInteractuablePadre) {
+        Transform ingredienteTransform = Instantiate(objetoInteractuableSO.prefab);
+        ObjetoInteractuable objetoInteractuable = ingredienteTransform.GetComponent<ObjetoInteractuable>();
+        objetoInteractuable.SetObjetoInteractuablePadre(objetoInteractuablePadre);
+        return objetoInteractuable;
     }
 
 }

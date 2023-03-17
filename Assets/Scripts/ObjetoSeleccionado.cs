@@ -8,17 +8,17 @@ using UnityEngine;
  */
 public class ObjetoSeleccionado : MonoBehaviour {
 
-    [SerializeField] private ClearContador clearContador;
-    [SerializeField] private GameObject visualGameObject;
+    [SerializeField] private ContenedorBase contenedorBase;
+    [SerializeField] private GameObject[] visualGameObjectA;
 
-    private void Start () {
+    private void Start() {
         Jugador.Instancia.ObjetoSeleccionadoCambiado += Jugador_ObjetoSeleccionadoCambiado;
     }
     /**
      * Método que gestiona el evento de cambio de capa adicional del objeto seleccionado.
      */
     private void Jugador_ObjetoSeleccionadoCambiado(object sender, Jugador.ObjetoSeleccionadoCambiadoEventArgs e) {
-        if (e.objetoSeleccionado == clearContador) { 
+        if (e.objetoSeleccionado == contenedorBase) {
             Mostrar();
         } else {
             Ocultar();
@@ -29,11 +29,15 @@ public class ObjetoSeleccionado : MonoBehaviour {
      * Sólo es una capa adicional visual para que el jugador
      * sepa qué objeto está seleccionando en ese momento si pulsa el botón de interacción
      */
-    private void Mostrar() { 
-        visualGameObject.SetActive(true);
+    private void Mostrar() {
+        foreach (GameObject visualGameObject in visualGameObjectA) {
+            visualGameObject.SetActive(true);
+        }
     }
 
     private void Ocultar() {
-        visualGameObject.SetActive(false);
+        foreach (GameObject visualGameObject in visualGameObjectA) {
+            visualGameObject.SetActive(false);
+        }
     }
 }

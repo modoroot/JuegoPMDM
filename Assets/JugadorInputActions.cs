@@ -44,6 +44,15 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InteraccionAlternativa"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0954139-606f-4fd9-97e8-05c166369dde"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -189,6 +198,28 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Interactuar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b5a7a4a-a7d5-4f06-b274-381707da1f31"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteraccionAlternativa"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bc522e2-fde6-4c41-9093-36b32a4ec411"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteraccionAlternativa"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -199,6 +230,7 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
         m_Jugador = asset.FindActionMap("Jugador", throwIfNotFound: true);
         m_Jugador_Mover = m_Jugador.FindAction("Mover", throwIfNotFound: true);
         m_Jugador_Interactuar = m_Jugador.FindAction("Interactuar", throwIfNotFound: true);
+        m_Jugador_InteraccionAlternativa = m_Jugador.FindAction("InteraccionAlternativa", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,12 +294,14 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
     private List<IJugadorActions> m_JugadorActionsCallbackInterfaces = new List<IJugadorActions>();
     private readonly InputAction m_Jugador_Mover;
     private readonly InputAction m_Jugador_Interactuar;
+    private readonly InputAction m_Jugador_InteraccionAlternativa;
     public struct JugadorActions
     {
         private @JugadorInputActions m_Wrapper;
         public JugadorActions(@JugadorInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Mover => m_Wrapper.m_Jugador_Mover;
         public InputAction @Interactuar => m_Wrapper.m_Jugador_Interactuar;
+        public InputAction @InteraccionAlternativa => m_Wrapper.m_Jugador_InteraccionAlternativa;
         public InputActionMap Get() { return m_Wrapper.m_Jugador; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +317,9 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
             @Interactuar.started += instance.OnInteractuar;
             @Interactuar.performed += instance.OnInteractuar;
             @Interactuar.canceled += instance.OnInteractuar;
+            @InteraccionAlternativa.started += instance.OnInteraccionAlternativa;
+            @InteraccionAlternativa.performed += instance.OnInteraccionAlternativa;
+            @InteraccionAlternativa.canceled += instance.OnInteraccionAlternativa;
         }
 
         private void UnregisterCallbacks(IJugadorActions instance)
@@ -293,6 +330,9 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
             @Interactuar.started -= instance.OnInteractuar;
             @Interactuar.performed -= instance.OnInteractuar;
             @Interactuar.canceled -= instance.OnInteractuar;
+            @InteraccionAlternativa.started -= instance.OnInteraccionAlternativa;
+            @InteraccionAlternativa.performed -= instance.OnInteraccionAlternativa;
+            @InteraccionAlternativa.canceled -= instance.OnInteraccionAlternativa;
         }
 
         public void RemoveCallbacks(IJugadorActions instance)
@@ -314,5 +354,6 @@ public partial class @JugadorInputActions: IInputActionCollection2, IDisposable
     {
         void OnMover(InputAction.CallbackContext context);
         void OnInteractuar(InputAction.CallbackContext context);
+        void OnInteraccionAlternativa(InputAction.CallbackContext context);
     }
 }
