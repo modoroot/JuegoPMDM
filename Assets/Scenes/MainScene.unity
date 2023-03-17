@@ -713,6 +713,18 @@ MonoBehaviour:
   layerMaskObjeto:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &2000857689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4572514398849761660, guid: 54c9f3437625d354c9eb8a995fd4f00f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1516279806}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a4d1a2ecfbd4649aa3526ac28debf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2034806381
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,10 +896,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4572514398849761660, guid: 54c9f3437625d354c9eb8a995fd4f00f,
         type: 3}
+      propertyPath: testBool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572514398849761660, guid: 54c9f3437625d354c9eb8a995fd4f00f,
+        type: 3}
       propertyPath: prefabTomate
       value: 
       objectReference: {fileID: 679896522706494813, guid: f693dc76a7c71b44b8cc655afba86e01,
         type: 3}
+    - target: {fileID: 4572514398849761660, guid: 54c9f3437625d354c9eb8a995fd4f00f,
+        type: 3}
+      propertyPath: testContador
+      value: 
+      objectReference: {fileID: 2000857689}
     - target: {fileID: 7436325247371529525, guid: 54c9f3437625d354c9eb8a995fd4f00f,
         type: 3}
       propertyPath: m_Name
