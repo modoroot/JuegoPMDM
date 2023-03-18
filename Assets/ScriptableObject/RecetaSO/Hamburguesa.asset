@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29929d51578fdca4d915341fc2d7043c, type: 3}
+  m_Name: Hamburguesa
+  m_EditorClassIdentifier: 
+  objetoInteractuableSOList:
+  - {fileID: 11400000, guid: 603ca7c3f10e6b943a9b2d42094e664c, type: 2}
+  - {fileID: 11400000, guid: 31d3ac18e5498fa439390a1a85eab460, type: 2}
+  nombreReceta: Hamburguesa

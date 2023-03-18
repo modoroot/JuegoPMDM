@@ -53,4 +53,15 @@ public class ObjetoInteractuable : MonoBehaviour {
         return objetoInteractuable;
     }
 
+
+    public bool TryGetPlato(out PlatoObjetoInteractuable platoObjetoInteractuable) {
+        if (this is PlatoObjetoInteractuable) {
+            platoObjetoInteractuable = this as PlatoObjetoInteractuable;
+            return true;
+        }else {
+            platoObjetoInteractuable = null;
+            return false;
+        }
+    }
+
 }

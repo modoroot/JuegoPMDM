@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29929d51578fdca4d915341fc2d7043c, type: 3}
+  m_Name: Borgir
+  m_EditorClassIdentifier: 
+  objetoInteractuableSOList:
+  - {fileID: 11400000, guid: 603ca7c3f10e6b943a9b2d42094e664c, type: 2}
+  - {fileID: 11400000, guid: 31d3ac18e5498fa439390a1a85eab460, type: 2}
+  - {fileID: 11400000, guid: 7cc0da9d2e927744ba57438409cc9b22, type: 2}
+  - {fileID: 11400000, guid: a29d72ea4619fd34fb8baa876b7ed800, type: 2}
+  - {fileID: 11400000, guid: 7f8bc8906ce9ac542b7260206f43b002, type: 2}
+  nombreReceta: Borgir

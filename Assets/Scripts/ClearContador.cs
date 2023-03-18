@@ -12,12 +12,25 @@ public class ClearContador : ContenedorBase {
             //Hueco vacío
             if (jugador.objInteractuableActivo()) {
                 jugador.GetObjetoInteractuable().SetObjetoInteractuablePadre(this);
-            } else { 
+            } else {
                 //El jugador no lleva nada
             }
         } else {
             if (jugador.objInteractuableActivo()) {
+                if (jugador.GetObjetoInteractuable().TryGetPlato(out PlatoObjetoInteractuable platoObjetoInteractuable)) {
+                    if (platoObjetoInteractuable.TryAniadirIngrediente(GetObjetoInteractuable().GetObjetoInteractuableSO())) {
+                        GetObjetoInteractuable().DestroySelf();
+                    }
 
+                } else {
+                    // El jugador no lleva un plato, sino un ingrediente
+                    if (GetObjetoInteractuable().TryGetPlato(out platoObjetoInteractuable)) {
+                        // Hay un plato en la encimera
+                        if (platoObjetoInteractuable.TryAniadirIngrediente(jugador.GetObjetoInteractuable().GetObjetoInteractuableSO())) {
+                            jugador.GetObjetoInteractuable().DestroySelf();
+                        }
+                    }
+                }
             } else {
                 GetObjetoInteractuable().SetObjetoInteractuablePadre(jugador);
             }

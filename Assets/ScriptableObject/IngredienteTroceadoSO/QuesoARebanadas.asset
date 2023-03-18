@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: f3e46ffe52c85e446b78ea945dc2da8b, type: 2}
   output: {fileID: 11400000, guid: a29d72ea4619fd34fb8baa876b7ed800, type: 2}
+  troceoMaximo: 2

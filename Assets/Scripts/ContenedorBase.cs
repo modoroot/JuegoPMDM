@@ -10,7 +10,6 @@ public class ContenedorBase : MonoBehaviour, IObjetoInteractuablePadre
         Debug.LogError("error contenedor base");
     }
     public virtual void InteractuarAlternativo(Jugador jugador) {
-        Debug.LogError("error contenedor base");
     }
 
 
