@@ -8,6 +8,9 @@ using UnityEngine;
  * 
  */
 public class Jugador : MonoBehaviour, IObjetoInteractuablePadre {
+
+    public event EventHandler OnCogerObjeto;
+
     // Propiedad que devuelve la instancia de la clase Jugador (patrón Singleton)
     public static Jugador Instancia { get; private set; }
 
@@ -51,6 +54,11 @@ public class Jugador : MonoBehaviour, IObjetoInteractuablePadre {
     }
 
     private void GameInput_OnInteractuarAccionAlternativa(object sender, EventArgs e) {
+
+        if (!GestorJuego.Instance.IsJuegoEmpezado()) {
+            return;
+        }
+        
         //Si hay un objeto seleccionado, se llama a la función de Interactuar de un objeto en concreto
         if (objetoSeleccionado != null) {
             objetoSeleccionado.InteractuarAlternativo(this);
@@ -63,6 +71,9 @@ public class Jugador : MonoBehaviour, IObjetoInteractuablePadre {
      * para así saber si puede interactuar o no.
      */
     private void GameInput_InteractuarAccion(object sender, System.EventArgs e) {
+        if (!GestorJuego.Instance.IsJuegoEmpezado()) {
+            return;
+        }
         //Si hay un objeto seleccionado, se llama a la función de Interactuar de un objeto en concreto
         if (objetoSeleccionado != null) {
             objetoSeleccionado.Interactuar(this);
@@ -196,6 +207,9 @@ public class Jugador : MonoBehaviour, IObjetoInteractuablePadre {
 
     public void SetObjInteractuable(ObjetoInteractuable objInteractuable) {
         this.objInteractuable = objInteractuable;
+        if (objInteractuable != null) {
+            OnCogerObjeto?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public void ClearObjInteractuable() {

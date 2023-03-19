@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class EncimeraTrocear : ContenedorBase, IProgreso {
 
-    public event EventHandler<IProgreso.CambioProgresoEventArgs> CambioProgreso;
 
+    public static event EventHandler OnCortarSonido;
+    public event EventHandler<IProgreso.CambioProgresoEventArgs> CambioProgreso;
     public event EventHandler OnCortar;
 
     [SerializeField] private IngredienteTroceadoSO[] ingredienteTroceadoSOArray;
@@ -54,6 +55,8 @@ public class EncimeraTrocear : ContenedorBase, IProgreso {
             progresoTroceo++;
 
             OnCortar?.Invoke(this, EventArgs.Empty);
+            OnCortarSonido?.Invoke(this, EventArgs.Empty);
+
             IngredienteTroceadoSO ingredienteTroceadoSO = GetIngredienteTroceadoSOInput(GetObjetoInteractuable().GetObjetoInteractuableSO());
             CambioProgreso?.Invoke(this, new IProgreso.CambioProgresoEventArgs {
                 progresoNormalizado = (float)progresoTroceo / ingredienteTroceadoSO.troceoMaximo

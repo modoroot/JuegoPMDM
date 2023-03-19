@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContenedorBase : MonoBehaviour, IObjetoInteractuablePadre
-{
+public class ContenedorBase : MonoBehaviour, IObjetoInteractuablePadre {
+
+    public static event EventHandler OnObjetoColocado;
+
     [SerializeField] private Transform puntoSuperiorObjeto;
     private ObjetoInteractuable objInteractuable;
     public virtual void Interactuar(Jugador jugador) {
-        Debug.LogError("error contenedor base");
     }
     public virtual void InteractuarAlternativo(Jugador jugador) {
     }
@@ -24,6 +26,9 @@ public class ContenedorBase : MonoBehaviour, IObjetoInteractuablePadre
 
     public void SetObjInteractuable(ObjetoInteractuable objInteractuable) {
         this.objInteractuable = objInteractuable;
+        if (objInteractuable != null) {
+            OnObjetoColocado?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public void ClearObjInteractuable() {

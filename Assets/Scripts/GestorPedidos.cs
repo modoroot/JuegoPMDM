@@ -1,19 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Content;
 using UnityEngine;
 
 public class GestorPedidos : MonoBehaviour {
 
     public event EventHandler OnRecetaInvocada;
     public event EventHandler OnRecetaCompletada;
+    public event EventHandler OnRecetaExitosa;
+    public event EventHandler OnRecetaFallida;
+
     public static GestorPedidos Instance { get; private set; }
     [SerializeField] private ListaRecetasSO listaRecetasSO;
 
     private List<RecetaSO> recetaSOList;
     private float invocarTiempoReceta;
-    private float invocarTiempoRecetaMax = 4f;
+    private float invocarTiempoRecetaMax = 6f;
     private int recetasEsperadasMax = 3;
+    private int cantidadRecetasExitosas;
 
     private void Awake() {
         Instance = this;
@@ -56,16 +61,24 @@ public class GestorPedidos : MonoBehaviour {
                     }
                 }
                 if (platoIgualQueReceta) {
+                    cantidadRecetasExitosas++;
                     //El jugador hizo la receta correcta
                     recetaSOList.RemoveAt(i);
                     OnRecetaCompletada?.Invoke(this, EventArgs.Empty);
+                    OnRecetaExitosa?.Invoke(this, EventArgs.Empty);
                     return;
                 }
             }
         }
         //No se ha encontrado ninguna receta, por lo que el jugador es malísimo
+        OnRecetaFallida?.Invoke(this, EventArgs.Empty);
     }
     public List<RecetaSO> GetRecetaEsperadaSOList() {
         return recetaSOList;
     }
+
+    public int GetCantidadRecetasExitosas() {
+        return cantidadRecetasExitosas;
+    }
+
 }
